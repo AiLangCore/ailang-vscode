@@ -1,0 +1,30 @@
+{
+  "name": "AiLang",
+  "scopeName": "source.ailang",
+  "patterns": [
+    {
+      "match": "\\b(Program|Block|Let|Var|Lit|Call|Import|Export|Project|Include|If|Eq|StrConcat|Add|StringSlice|StringRemove|StringFind|BytesLength|BytesAt|BytesSlice|BytesConcat|MakePair|PairFirst|PairSecond|Fn|Await|Par|Return)\\b",
+      "name": "keyword.control.ailang"
+    },
+    {
+      "match": "\\b(name|value|target|path|package|sdk|params|async|entryFile|entryExport|version)\\s*=",
+      "name": "entity.other.attribute-name.ailang"
+    },
+    {
+      "match": "\"([^\"\\\\]|\\\\.)*\"",
+      "name": "string.quoted.double.ailang"
+    },
+    {
+      "match": "\\b(true|false|null)\\b",
+      "name": "constant.language.ailang"
+    },
+    {
+      "match": "\\b-?[0-9]+\\b",
+      "name": "constant.numeric.ailang"
+    },
+    {
+      "match": "\\b[a-zA-Z_][a-zA-Z0-9_.]*\\b",
+      "name": "variable.other.ailang"
+    }
+  ]
+}

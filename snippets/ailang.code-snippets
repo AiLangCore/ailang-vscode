@@ -1,0 +1,68 @@
+{
+  "Program": {
+    "prefix": "program",
+    "body": [
+      "Program {",
+      "\t$0",
+      "}"
+    ]
+  },
+
+  "Let": {
+    "prefix": "let",
+    "body": [
+      "Let(name=${1:value}) {",
+      "\t${2:Lit(value=\"\")}",
+      "}"
+    ]
+  },
+
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "Fn(params=${1:param}) {",
+      "\tBlock {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "Call": {
+    "prefix": "call",
+    "body": [
+      "Call(target=${1:function}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+
+  "If": {
+    "prefix": "if",
+    "body": [
+      "If {",
+      "\t${1:condition}",
+      "\tBlock {",
+      "\t\t$2",
+      "\t}",
+      "\tBlock {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "Import(path=\"${1:file.aos}\")"
+    ]
+  },
+
+  "Export": {
+    "prefix": "export",
+    "body": [
+      "Export(name=${1:symbol})"
+    ]
+  }
+}
