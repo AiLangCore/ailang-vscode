@@ -1,0 +1,144 @@
+{
+  "name": "AiSVG",
+  "scopeName": "source.aisvg",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#aosInterpolation"
+    },
+    {
+      "include": "#svgTags"
+    },
+    {
+      "include": "#aosNodes"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#attributes"
+    },
+    {
+      "include": "#identifiers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": "<!--",
+          "end": "-->",
+          "name": "comment.block.aisvg"
+        },
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.aisvg"
+        }
+      ]
+    },
+    "aosInterpolation": {
+      "patterns": [
+        {
+          "begin": "\\{\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.aisvg"
+            }
+          },
+          "end": "\\}\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.aisvg"
+            }
+          },
+          "name": "meta.embedded.block.ailang.aisvg",
+          "patterns": [
+            {
+              "include": "source.ailang"
+            }
+          ]
+        }
+      ]
+    },
+    "svgTags": {
+      "patterns": [
+        {
+          "match": "</?\\b(svg|g|defs|symbol|use|path|rect|circle|ellipse|line|polyline|polygon|text|tspan|image|linearGradient|radialGradient|stop|clipPath|mask|filter|feGaussianBlur|feOffset|feBlend|feColorMatrix|feComposite|feFlood|feMerge|feMergeNode|feDropShadow|animate|animateTransform|animateMotion|set)\\b",
+          "name": "entity.name.tag.aisvg"
+        },
+        {
+          "match": "/?>",
+          "name": "punctuation.definition.tag.aisvg"
+        }
+      ]
+    },
+    "aosNodes": {
+      "patterns": [
+        {
+          "match": "\\b(AiSVG|Svg|Group|Defs|Symbol|Use|Path|Rect|Circle|Ellipse|Line|Polyline|Polygon|Text|TSpan|Image|LinearGradient|RadialGradient|Stop|ClipPath|Mask|Filter|GaussianBlur|Offset|Blend|ColorMatrix|Composite|Flood|Merge|MergeNode|DropShadow|Animate|AnimateTransform|AnimateMotion|Set)\\b",
+          "name": "support.class.aisvg"
+        },
+        {
+          "match": "\\b(Program|Block|Let|Var|Lit|Call|Import|Export|Project|Include|If|Eq|Fn|Await|Par|Return)\\b",
+          "name": "keyword.control.ailang.aisvg"
+        }
+      ]
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "match": "\\b(id|class|x|y|x1|y1|x2|y2|cx|cy|r|rx|ry|width|height|viewBox|d|points|transform|fill|stroke|strokeWidth|strokeLinecap|strokeLinejoin|opacity|fillOpacity|strokeOpacity|fontFamily|fontSize|fontWeight|textAnchor|href|clipPath|mask|filter|offset|stopColor|stopOpacity|gradientUnits|gradientTransform|from|to|by|dur|begin|repeatCount|repeatDur|attributeName|attributeType|type|values|keyTimes|keySplines|calcMode|path|target|name|value)\\s*=",
+          "name": "entity.other.attribute-name.aisvg"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "match": "\"([^\"\\\\]|\\\\.)*\"",
+          "name": "string.quoted.double.aisvg"
+        },
+        {
+          "match": "'([^'\\\\]|\\\\.)*'",
+          "name": "string.quoted.single.aisvg"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(true|false|null|none|transparent|currentColor|inherit|initial|unset|indefinite)\\b",
+          "name": "constant.language.aisvg"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b-?[0-9]+(\\.[0-9]+)?(px|em|rem|pt|pc|cm|mm|in|%|s|ms)?\\b",
+          "name": "constant.numeric.aisvg"
+        },
+        {
+          "match": "#[0-9a-fA-F]{3,8}\\b",
+          "name": "constant.other.color.rgb-value.aisvg"
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_.-]*\\b",
+          "name": "variable.other.aisvg"
+        }
+      ]
+    }
+  }
+}
