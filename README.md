@@ -1,25 +1,38 @@
 # AiLang for Visual Studio Code
 
-Visual Studio Code language support for AiLang `.aos`, `.aiproj`, and AiSVG `.aisvg` files.
+Visual Studio Code support for the AiLang ecosystem.
 
-This extension is intentionally a thin editor adapter:
+This extension provides syntax highlighting, snippets, file associations, and editor support for:
 
-- syntax highlighting through TextMate grammars
-- bracket/comment/editor configuration
-- Explorer file nesting for AiSVG code-behind files
-- snippets for common AiLang and AiSVG node forms
-- future commands that call the AiLang CLI for check/format/run
+- `.aos` — AiLang source files
+- `.aiproj` — AiLang project files
+- `.aisvg` — AiSVG view files
+- `.aisvg.aos` — AiLang/AOS code-behind files for AiSVG views
 
-It must not define AiLang or AiSVG semantics. Semantic authority remains in AiLang/AiVectra and the normative specs in the main repositories:
+## AiLang
 
-- `SPEC/IL.md`
-- `SPEC/EVAL.md`
-- `SPEC/VALIDATION.md`
-- `SPEC/AISVG.md`
+AiLang is an open-source programming language designed for deterministic, AI-native software development.
+
+The AiLang Core ecosystem includes:
+
+- **AiLang** — language and tooling
+- **AiVM** — deterministic virtual machine
+- **AiVectra** — cross-platform vector UI framework
+- **AiSVG** — AI-friendly vector UI markup
+
+Website:
+
+```text
+https://ailang.codes
+```
+
+GitHub:
+
+```text
+https://github.com/AiLangCore
+```
 
 ## Features
-
-Current scaffold:
 
 - `.aos` and `.aiproj` file association
 - `.aisvg` file association for AiSVG view documents
@@ -34,6 +47,44 @@ Current scaffold:
 - language configuration for brackets, comments, surrounding pairs, and folding markers
 - snippets for `Program`, `Import`, `Export`, `Let`, `Fn`, `Call`, `If`, `Return`, `Project`, `Include`, plus common AiSVG document/node forms
 
+## Installing AiLang
+
+Install the AiLang toolchain from the main repository:
+
+```bash
+git clone https://github.com/AiLangCore/AiLang.git
+cd AiLang
+./build.sh
+```
+
+Verify the toolchain:
+
+```bash
+ailang --version
+```
+
+For current documentation and install notes, visit:
+
+```text
+https://ailang.codes
+```
+
+## Quick start
+
+Create or open an AiLang project, then use the extension with `.aos`, `.aiproj`, and `.aisvg` files.
+
+Build from the command line:
+
+```bash
+ailang build .
+```
+
+Run from the command line:
+
+```bash
+ailang run .
+```
+
 ## AiSVG file pairing
 
 AiSVG uses a view/code-behind pairing:
@@ -45,7 +96,7 @@ MainView.aisvg
 
 - `MainView.aisvg` is the AiSVG view file.
 - `MainView.aisvg.aos` is the AiLang/AOS code-behind file for that view.
-- The VS Code Explorer should display the code-behind file nested under the matching view file.
+- The VS Code Explorer displays the code-behind file nested under the matching view file.
 - The code-behind file is not a separate AiSVG document type; it is AiLang/AOS attached to an AiSVG view.
 
 The extension contributes this default file nesting rule:
@@ -81,9 +132,28 @@ AiSVG(width=800 height=600 viewBox="0 0 800 600") {
 }
 ```
 
+## Support AiLang
+
+AiLang is an independent open-source project. If AiLang helps your work, please consider supporting ongoing development.
+
+Sponsor the project:
+
+```text
+https://github.com/sponsors/AiLangCore
+```
+
+Sponsorship helps fund:
+
+- language development
+- AiVM runtime work
+- AiVectra and AiSVG UI development
+- documentation
+- testing and CI infrastructure
+- examples and developer tooling
+
 ## Architecture rule
 
-The extension may recognize tokens for editor presentation, but validation, formatting, evaluation, and diagnostics must come from the AiLang toolchain.
+This extension is intentionally a thin editor adapter. It may recognize tokens for editor presentation, but validation, formatting, evaluation, and diagnostics must come from the AiLang toolchain.
 
 Good future behavior:
 
@@ -121,12 +191,42 @@ Run the extension from VS Code:
 2. Press `F5` to launch an Extension Development Host.
 3. Open a `.aos` or `.aisvg` file.
 
+## Publishing
+
+This repository includes a GitHub Actions workflow that publishes the extension to the Visual Studio Marketplace when a GitHub release is published.
+
+Required repository secret:
+
+```text
+VSCE_PAT
+```
+
+Manual local publish:
+
+```bash
+npx vsce package
+npx vsce publish
+```
+
+Release publish flow:
+
+1. Update `package.json` version.
+2. Commit and push the change.
+3. Create and publish a GitHub release.
+4. The `Publish VS Code Extension` workflow publishes the extension using `VSCE_PAT`.
+
 ## File types
 
 - `.aos` — AiLang source files
 - `.aiproj` — AiLang project manifest files
 - `.aisvg` — AiSVG view documents
 - `.aisvg.aos` — AiLang/AOS code-behind files for matching `.aisvg` view documents
+
+## Links
+
+- Website: `https://ailang.codes`
+- GitHub organization: `https://github.com/AiLangCore`
+- Sponsorship: `https://github.com/sponsors/AiLangCore`
 
 ## License
 
