@@ -1,11 +1,12 @@
 # AiLang for Visual Studio Code
 
-Visual Studio Code language support for AiLang `.aos`, `.aiproj`, `.aisvg`, and `.aisvg.aos` files.
+Visual Studio Code language support for AiLang `.aos`, `.aiproj`, and AiSVG `.aisvg` files.
 
 This extension is intentionally a thin editor adapter:
 
 - syntax highlighting through TextMate grammars
 - bracket/comment/editor configuration
+- Explorer file nesting for AiSVG code-behind files
 - snippets for common AiLang and AiSVG node forms
 - future commands that call the AiLang CLI for check/format/run
 
@@ -21,8 +22,9 @@ It must not define AiLang or AiSVG semantics. Semantic authority remains in AiLa
 Current scaffold:
 
 - `.aos` and `.aiproj` file association
-- `.aisvg` file association for AiSVG documents
-- `*.aisvg.aos` file association for AiSVG documents written with AOS-style nesting
+- `.aisvg` file association for AiSVG view documents
+- `*.aisvg.aos` code-behind files remain AiLang/AOS files because they end in `.aos`
+- VS Code Explorer nests `*.aisvg.aos` under the matching `*.aisvg` file
 - highlighting for core AiLang node kinds from the current IL spec
 - highlighting for common AiSVG node kinds such as `AiSVG`, `Group`, `Path`, `Rect`, `Circle`, `LinearGradient`, and `Stop`
 - highlighting for XML-like SVG tags and attributes in `.aisvg` files
@@ -32,10 +34,31 @@ Current scaffold:
 - language configuration for brackets, comments, surrounding pairs, and folding markers
 - snippets for `Program`, `Import`, `Export`, `Let`, `Fn`, `Call`, `If`, `Return`, `Project`, `Include`, plus common AiSVG document/node forms
 
-## AiSVG file types
+## AiSVG file pairing
 
-- `.aisvg` — AiSVG documents, including XML-like SVG syntax and AiSVG node syntax
-- `.aisvg.aos` — AiSVG documents using AiLang/AOS-style nesting
+AiSVG uses a view/code-behind pairing:
+
+```text
+MainView.aisvg
+└── MainView.aisvg.aos
+```
+
+- `MainView.aisvg` is the AiSVG view file.
+- `MainView.aisvg.aos` is the AiLang/AOS code-behind file for that view.
+- The VS Code Explorer should display the code-behind file nested under the matching view file.
+- The code-behind file is not a separate AiSVG document type; it is AiLang/AOS attached to an AiSVG view.
+
+The extension contributes this default file nesting rule:
+
+```json
+{
+  "explorer.fileNesting.patterns": {
+    "*.aisvg": "${capture}.aisvg.aos"
+  }
+}
+```
+
+## AiSVG embedded expressions
 
 AiSVG files may embed AiLang/AOS expressions using `{{ ... }}`. The extension delegates those embedded regions to the existing AiLang TextMate grammar for editor highlighting only.
 
@@ -96,14 +119,14 @@ Run the extension from VS Code:
 
 1. Open this repository in VS Code.
 2. Press `F5` to launch an Extension Development Host.
-3. Open a `.aos`, `.aisvg`, or `.aisvg.aos` file.
+3. Open a `.aos` or `.aisvg` file.
 
 ## File types
 
 - `.aos` — AiLang source files
 - `.aiproj` — AiLang project manifest files
-- `.aisvg` — AiSVG documents
-- `.aisvg.aos` — AiSVG documents using AOS-style nesting
+- `.aisvg` — AiSVG view documents
+- `.aisvg.aos` — AiLang/AOS code-behind files for matching `.aisvg` view documents
 
 ## License
 
