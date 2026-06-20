@@ -1,7 +1,7 @@
 {
   "name": "ailang-vscode",
   "displayName": "AiLang",
-  "description": "Visual Studio Code support for AiLang .aos and .aiproj files.",
+  "description": "Visual Studio Code support for AiLang .aos, .aiproj, .aisvg, and .aisvg.aos files.",
   "version": "0.0.1",
   "publisher": "AiLangCore",
   "engines": {
@@ -23,6 +23,20 @@
           ".aiproj"
         ],
         "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "aisvg",
+        "aliases": [
+          "AiSVG",
+          "aisvg"
+        ],
+        "extensions": [
+          ".aisvg"
+        ],
+        "filenamePatterns": [
+          "*.aisvg.aos"
+        ],
+        "configuration": "./aisvg-language-configuration.json"
       }
     ],
     "grammars": [
@@ -30,12 +44,21 @@
         "language": "ailang",
         "scopeName": "source.ailang",
         "path": "./syntaxes/ailang.tmLanguage.json"
+      },
+      {
+        "language": "aisvg",
+        "scopeName": "source.aisvg",
+        "path": "./syntaxes/aisvg.tmLanguage.json"
       }
     ],
     "snippets": [
       {
         "language": "ailang",
         "path": "./snippets/ailang.code-snippets"
+      },
+      {
+        "language": "aisvg",
+        "path": "./snippets/aisvg.code-snippets"
       }
     ]
   }
