@@ -2,7 +2,7 @@
   "name": "ailang-vscode",
   "displayName": "AiLang",
   "description": "Visual Studio Code support for AiLang .aos, .aiproj, and AiSVG .aisvg files.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "AiLangCore",
   "engines": {
     "vscode": "^1.90.0"
