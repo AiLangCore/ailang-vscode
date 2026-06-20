@@ -14,6 +14,21 @@
     "url": "https://github.com/AiLangCore/ailang-vscode/issues"
   },
   "homepage": "https://github.com/AiLangCore/ailang-vscode#readme",
+  "keywords": [
+    "ailang",
+    "aivm",
+    "aivectra",
+    "aisvg",
+    "programming-language",
+    "language",
+    "ai",
+    "deterministic",
+    "vscode-extension"
+  ],
+  "galleryBanner": {
+    "color": "#0B1220",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
