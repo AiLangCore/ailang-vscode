@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "publisher": "AiLangCore",
   "license": "MIT",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/AiLangCore/ailang-vscode.git"
